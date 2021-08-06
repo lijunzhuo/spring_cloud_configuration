@@ -1,0 +1,67 @@
+#激活application-abc.yml文件
+spring:
+#  profiles:
+#    active: abc #只用写前缀application-***.xml中的***就行
+  #配置datasource
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: jj89757123
+    hikari:
+      minimum-idle: 5
+  redis:
+    host: localhost
+    port: 6379
+  #配置rabbitMQ的基本信息
+  rabbitmq:
+    host: 192.168.56.1
+    port: 5672
+    virtual-host: /rabbitmqStudy
+    username: leo
+    password: jj89757123
+  application:
+    name: user-service #service的名称，用于Ribbon的服务调用
+
+#Eureka配置
+eureka:
+  instance:
+    hostname: 127.0.0.1 #服务注册中心IP地址
+    #更倾向于使用ip地址，而不是使用host name
+    #修改的是restTemplate.getHost()中不再是localhost而是127.0.0.1
+    prefer-ip-address: true
+    #ip地址
+    ip-address: 127.0.0.1
+    #服务失效时间，默认90秒
+    #lease-expiration-duration-in-seconds: 5
+    #续约间隔，默认30秒
+    #lease-renewal-interval-in-seconds: 5
+  client:
+    service-url:
+      #eureka服务地址：如果是Eureka集群的话，就需要指定Eureka的集群地址
+      defaultZone: http://${eureka.instance.hostname}:10086/eureka/
+      #Eureka集群配置
+      #defaultZone: http://${eureka.instance.hostname}:10086/eureka/, http://${eureka.instance.hostname}:10087/eureka/
+
+#修改端口号，http://localhost:8083
+#使用VM变量中的变量port，没有提供就使用8083
+server:
+  port: ${port:8083}
+
+#日志记录级别
+logging:
+  level:
+    ca.leo: debug
+    org.springframewokr: info
+
+#配置MyBatis
+mybatis:
+  #配置实体类别名
+  type-aliases-package: ca.leo.pojo
+  #映射文件路径
+  mapper-locations: classpath:ca.leo.mapper/*.xml
+  #log文件配置
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
