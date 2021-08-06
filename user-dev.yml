@@ -1,13 +1,13 @@
 #激活application-abc.yml文件
 spring:
-#  profiles:
-#    active: abc #只用写前缀application-***.xml中的***就行
+  #  profiles:
+  #    active: abc #只用写前缀application-***.xml中的***就行
   #配置datasource
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: jj89757123
+    password: 666666
     hikari:
       minimum-idle: 5
   redis:
@@ -19,7 +19,7 @@ spring:
     port: 5672
     virtual-host: /rabbitmqStudy
     username: leo
-    password: jj89757123
+    password: 666666
   application:
     name: user-service #service的名称，用于Ribbon的服务调用
 
@@ -63,5 +63,3 @@ mybatis:
   #log文件配置
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
